@@ -1,0 +1,166 @@
+    <div class="row">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select POI</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Country</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Time</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    </div> 
+
+
+
+            <div>
+          <label for="LangState">Language</label>
+          <select id="LangState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div>
+          <label for="TState">Time</label>
+          <select id="TState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+
+
+
+
+            <form action="#", method="post">
+      <div class="form-group col-sm-2">
+        <label class="InitSearch" for="Init">Search:</label>
+        <input type="text" class="form-control" name="sval" placeholder="Username/Keyword">
+      </div>
+      <div class="form-row col-sm-4">
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">POI</label>
+          <select class="form-control" id="POIstate">
+            <option selected>Select</option>
+            <option>POI 1</option>
+            <option>POI 2</option>
+            <option>POI 3</option>
+            <option>POI 4</option>
+            <option>POI 5</option>
+            <option>POI 6</option>
+            <option>POI 7</option>
+            <option>POI 8</option>
+            <option>POI 9</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">Language</label>
+          <select class="form-control" id="LANGstate">
+            <option selected>Select</option>
+            <option>English</option>
+            <option>Italtian</option>
+            <option>Hindi</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">Location</label>
+          <select class="form-control" id="Lstate">
+            <option selected>Select</option>
+            <option>United States</option>
+            <option>Italy</option>
+            <option>India</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">Time</label>
+          <select class="form-control" id=""Tstate>
+            <option selected>Select</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <input type="submit" value="submit" class="btn btn-primary"/>
+      </div>
+    </form>
+
+
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">Language</label>
+          <select type="text" class="form-control" name="LANGstate">
+            <option selected>Select</option>
+            <option>English</option>
+            <option>Italtian</option>
+            <option>Hindi</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">Location</label>
+          <select type="text" class="form-control" name="Lstate">
+            <option selected>Select</option>
+            <option>United States</option>
+            <option>Italy</option>
+            <option>India</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">Time</label>
+          <select type="text" class="form-control" name=""Tstate>
+            <option selected>Select</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </div>
+
+
+
+
+['POI', 'Tweets', { role: 'style' } ],
+['US POI 1', 123, '#B42033'],
+['US POI 2', 20, '#FEFEFE'],
+['US POI 3', 456, '#3C3B6E'],
+['IT POI 1', 78, '#008c45'],
+['IT POI 2', 314, '#f4f5f0'],
+['IT POI 3', 100, '#cd212a'],
+['HI POI 1', 214, '#FF9933'],
+['HI POI 2', 379, '#FFFFFF'],
+['HI POI 3', 52, '#138808'],
+
+<div class="form-group col-sm-3">
+  <label for="exampleFormControlSelect1">Time</label>
+  <select type="text" class="form-control" name="Tstate">
+    <option selected>Select</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+  </select>
