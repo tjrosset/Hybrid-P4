@@ -164,3 +164,23 @@
     <option>6</option>
     <option>7</option>
   </select>
+
+
+
+
+
+
+
+<p>Number of Results: {{num}}</p>
+<div class="d-flex flex-wrap justify-content-center">
+{% for test in top %}
+<div class="card" style="width: 22rem; justify-content: center;">
+  <div class="card-body">
+    <h5 class="card-title">{{test[0]}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{test[2]}} {{test[3]}}</h6>
+    <p class="card-text">{{test[1]}}</p>
+    <b class="card-link">Retweets: {{test[4]}} Favorites: {{test[5]}}</b>
+  </div>
+</div>
+{% endfor %}
+</div>

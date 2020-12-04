@@ -20,6 +20,7 @@ def home():
 @app.route('/results', methods=["POST","GET"])
 def result():
     filters = []
+    topposts = []
 #SEARCH
     if(request.args['a'] ==""):
         srch = 'tweet_text: *'
@@ -47,19 +48,37 @@ def result():
     print(srch)
     print(filters)
     solr = pysolr.Solr('http://34.235.148.250:8983/solr/IRF20P4/')
-    result = solr.search(srch, fq=filters)
+    result = solr.search(srch, fq=filters, rows=20)
     num = result.raw_response['response']['numFound']
-    top5 = []
+    x=0
+    if num<15:
+        while x<num:
+            tweet=[]
+            tweet.append(result.raw_response['response']['docs'][x]['user.screen_name'])
+            tweet.append(result.raw_response['response']['docs'][x]['full_text'])
+            tweet.append(result.raw_response['response']['docs'][x]['country'])
+            tweet.append(result.raw_response['response']['docs'][x]['created_at'])
+            tweet.append(result.raw_response['response']['docs'][x]['retweet_count'])
+            tweet.append(result.raw_response['response']['docs'][x]['favorite_count'])
+            topposts.append(tweet)
+            x+=1
+    else:
+        while x!=15:
+            tweet=[]
+            tweet.append(result.raw_response['response']['docs'][x]['user.screen_name'])
+            tweet.append(result.raw_response['response']['docs'][x]['full_text'])
+            tweet.append(result.raw_response['response']['docs'][x]['country'])
+            tweet.append(result.raw_response['response']['docs'][x]['created_at'])
+            tweet.append(result.raw_response['response']['docs'][x]['retweet_count'])
+            tweet.append(result.raw_response['response']['docs'][x]['favorite_count'])
+            topposts.append(tweet)
+            x+=1
     print(num)
-    return render_template("result.html", num=num)
+    return render_template("result.html", num=num , top = topposts)
 
 @app.route('/insights')
 def insights():
     return render_template("insights.html")
 
-@app.route('/solrget', methods=["POST","GET"])
-def solr():
-
-    return render_template("insights.html")
 
 
