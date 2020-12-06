@@ -184,3 +184,48 @@
 </div>
 {% endfor %}
 </div>
+
+style="position:absolute; height: 100%; width: 100%; top:25%; left:25%"
+
+
+<div class="form-row col-sm-4">
+  <div class="form-group col-sm-4">
+    <label for="exampleFormControlSelect1">POI</label>
+    <select type="text" class="form-control" name="POIstate" >
+      <option selected>Select</option>
+      <option>RealDonaldTrump</option>
+      <option>GavinNewsom</option>
+      <option>CDCgov</option>
+      <option>Matteorenzi</option>
+      <option>Narendramodi</option>
+      <option>lauraboldrini</option>
+      <option>drharshvardhan</option>
+      <option>nitin_gadkari</option>
+      <option>secazar</option>
+      <option>gualtierieurope</option>
+      <option>matteosalvinimi</option>
+      <option>nygovcuomo</option>
+      <option>thekiranbedi</option>
+      <option>pemakhandubjp</option>
+      <option>gualtierieurope</option>
+    </select>
+  </div>
+  <div class="form-group col-sm-4">
+    <label for="exampleFormControlSelect1">Language</label>
+    <select type="text" class="form-control" name="LANGstate">
+      <option selected>Select</option>
+      <option>en</option>
+      <option>it</option>
+      <option>hi</option>
+    </select>
+  </div>
+  <div class="form-group col-sm-4">
+    <label for="exampleFormControlSelect1">Location</label>
+    <select type="text" class="form-control" name="Lstate">
+      <option selected>Select</option>
+      <option>USA</option>
+      <option>Italy</option>
+      <option>India</option>
+    </select>
+  </div>
+</div>

@@ -11,6 +11,7 @@
     <title>Search Results</title>
   </head>
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <b class="navbar-brand" href="/">Hybrid</b>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +32,58 @@
           </ul>
         </div>
     </nav>
+    <!-- Search -->
+    <form action="#", method="post">
+      <div class="form-row">
+        <div class="col-sm-3">
+          <label class="InitSearch" for="Init">Search:</label>
+          <input type="text" class="form-control" name="sval" placeholder="Username/Keyword">
+        </div>
+        <div class="col-sm-2">
+          <label for="exampleFormControlSelect1">POI</label>
+          <select type="text" class="form-control" name="POIstate" >
+            <option selected>Select</option>
+            <option>RealDonaldTrump</option>
+            <option>GavinNewsom</option>
+            <option>CDCgov</option>
+            <option>Matteorenzi</option>
+            <option>Narendramodi</option>
+            <option>lauraboldrini</option>
+            <option>drharshvardhan</option>
+            <option>nitin_gadkari</option>
+            <option>secazar</option>
+            <option>gualtierieurope</option>
+            <option>matteosalvinimi</option>
+            <option>nygovcuomo</option>
+            <option>thekiranbedi</option>
+            <option>pemakhandubjp</option>
+            <option>gualtierieurope</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <label for="exampleFormControlSelect1">Language</label>
+          <select type="text" class="form-control" name="LANGstate">
+            <option selected>Select</option>
+            <option>en</option>
+            <option>it</option>
+            <option>hi</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <label for="exampleFormControlSelect1">Location</label>
+          <select type="text" class="form-control" name="Lstate">
+            <option selected>Select</option>
+            <option>USA</option>
+            <option>Italy</option>
+            <option>India</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <input type="submit" value="submit" class="btn btn-primary" style="margin-top:30px; box-shadow: 1px 5px 3px grey;"/>
+        </div>
+      </div>
+    </form>
+    <!-- results -->
     <div>
       <div>
         <p>Number of Results: {{num}}</p>
@@ -58,8 +111,8 @@
       </div>
 
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
