@@ -1,5 +1,6 @@
 from flask import Flask, render_template,redirect,url_for,request
 from urllib.request import urlopen
+from googlesearch import search
 import pysolr
 
 app = Flask(__name__)
@@ -30,17 +31,24 @@ def result():
     else:
         filters = []
         topposts = []
+        placeholder =''
     #SEARCH
         if(request.args['a'] ==""):
             srch = 'tweet_text: *'
+            placeholder= ''
         else:
             srch = "tweet_text: " + request.args['a']
+            placeholder = request.args['a']
+
     #POINAME
         if(request.args['b'] =="Select"):
-            poiname = ""
+            poilimit = "-poi_name: null"
+            poilimit1 = "-poi_name: none"
+            filters.append(poilimit)
+            filters.append(poilimit1)
         else:
             poiname = "poi_name: " + request.args['b']
-        filters.append(poiname)
+            filters.append(poiname)
     #LANGUAGE
         if(request.args['c'] =="Select"):
             lang = ""
@@ -56,7 +64,7 @@ def result():
 
         print(srch)
         print(filters)
-        solr = pysolr.Solr('http://34.235.148.250:8983/solr/IRF20P4/')
+        solr = pysolr.Solr('http://18.234.178.228:8983/solr/IRF20P4/')
         result = solr.search(srch, fq=filters, rows=20)
         num = result.raw_response['response']['numFound']
         x=0
@@ -83,7 +91,7 @@ def result():
                 topposts.append(tweet)
                 x+=1
         print(num)
-        return render_template("result.html", num=num , top = topposts, quey = srch)
+        return render_template("result.html", num=num , top = topposts, quey = placeholder)
 
 @app.route('/insights')
 def insights():

@@ -28,9 +28,9 @@
         ['narendramodi', 2220, 'stroke-color: #000000; stroke-width: 2; fill-color: #BB133E'],
         ['matteosalvinimi', 981, 'stroke-color: #000000; stroke-width: 2; fill-color: #FEFEFE'],
         ['drharshvardhan', 1583, 'stroke-color: #000000; stroke-width: 2; fill-color: #3C3B6E'],
-        ['nitin_gadkari', 1556, 'stroke-color: #000000; stroke-width: 2; fill-color: #BB133E'],
-        ['gualtierieurope', 1483, 'stroke-color: #000000; stroke-width: 2; fill-color: #FEFEFE'],
-        ['matteorenzi', 981, 'stroke-color: #000000; stroke-width: 2; fill-color: #3C3B6E'],
+        ['nitin_gadkari', 1556, 'stroke-color: #000000; stroke-width: 2; fill-color: #008c45'],
+        ['gualtierieurope', 1483, 'stroke-color: #000000; stroke-width: 2; fill-color: #f4f5f0'],
+        ['matteorenzi', 981, 'stroke-color: #000000; stroke-width: 2; fill-color: #cd212a'],
       ]);
 
       var view = new google.visualization.DataView(data);
@@ -57,14 +57,15 @@
       function drawChart() {
       var data = google.visualization.arrayToDataTable([
         ["Language", "Number of Tweets"],
-        ['English', 25000],
-        ['ITALIAN', 17954],
-        ['HINDI', 11489],
+        ['English', 9491],
+        ['ITALIAN', 5493],
+        ['HINDI', 2208],
+        ['OTHER', 591],
 
       ]);
 
       var options = {
-          title: 'Tweets Per Language',
+          title: 'POI Tweets Per Language',
           pieHole: 0.4,
         };
 
@@ -72,7 +73,81 @@
         chart.draw(data, options);
       }
     </script>
-    
+    <!-- TweetsPerLocationChart -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Location", "Number of Tweets"],
+        ['USA', 5807],
+        ['ITALY', 5843],
+        ['INDIA', 6133],
+
+      ]);
+
+      var options = {
+          title: 'POI Tweets Per Country',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Tperloc'));
+        chart.draw(data, options);
+      }
+    </script>
+    <!-- covid vs noncovid -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Related To Covid', 'Not Related to Covid'],
+          ['USA POI TWEETS', 1750, 4057],
+          ['ITALY POI TWEETS', 609, 5234],
+          ['INDIA POI TWEETS', 956, 5177],
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Covid VS Non-Covid Tweets',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barcomp'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    <!-- covid curves -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'USA', 'ITALY', 'INDIA'],
+          ['JULY 1st',  1477870,      15122,      605220],
+          ['JULY 31st',  2269422,      12268,      1697054],
+          ['AUGUST 1st',  2293217,      12303,      1751919],
+          ['AUGUST 31st',  2626877,      26081,      3687939],
+          ['SEPTEMBER 1st',  2627568,       26766,     3766108],
+          ['SEPTEMBER 30th',  2574775,       51263,     6310267]
+        ]);
+
+        var options = {
+          title: 'Covid Curves',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('covid_curve'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
     <title>Insights</title>
   </head>
   <body>
@@ -94,7 +169,12 @@
     </nav> 
     <div>
       <div id="TPD" style="width:100%; height:300px; justify-content: center;"></div>
-      <div id="TPL" style="width: 900px; height: 500px; justify-content: center;"></div>
+      <div class='d-flex bd-highlight'>
+        <div class="p-2 flex-fill bd-highlight" id="TPL" style="width: 900px; height: 500px; justify-content: center;"></div>
+        <div class="p-2 flex-fill bd-highlight" id="Tperloc" style="width: 900px; height: 500px; justify-content: center;"></div>
+      </div>
+      <div id="barcomp" style="width:100%; height:300px; justify-content: center;"></div>
+      <div id="covid_curve" style="width:100%; height:300px; justify-content: center;"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

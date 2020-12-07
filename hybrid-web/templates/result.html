@@ -37,7 +37,7 @@
       <div class="form-row">
         <div class="col-sm-3">
           <label class="InitSearch" for="Init">Search:</label>
-          <input type="text" class="form-control" name="sval" placeholder="Username/Keyword">
+          <input type="text" class="form-control" name="sval" value={{quey}}>
         </div>
         <div class="col-sm-2">
           <label for="exampleFormControlSelect1">POI</label>
@@ -57,7 +57,7 @@
             <option>nygovcuomo</option>
             <option>thekiranbedi</option>
             <option>pemakhandubjp</option>
-            <option>gualtierieurope</option>
+            <option>ministerosalute</option>
           </select>
         </div>
         <div class="col-sm-2">
@@ -92,7 +92,7 @@
         <div class="p-2 flex-fill bd-highlight">
           <h2>Tweets</h2>
           {% for test in top %}
-            <div class="card" style="width: 22rem; justify-content: center;">
+            <div class="card" style="width: 25vw; justify-content: center;">
               <div class="card-body">
                 <h5 class="card-title">{{test[0]}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{test[2]}} {{test[3]}}</h6>
@@ -102,11 +102,28 @@
             </div>
           {% endfor %}
         </div>
-        <div class="p-2 flex-fill bd-highlight">
 
+        <div class="p-2 flex-fill bd-highlight">
+          <h2>News</h2>
+          <div class="card" style="width: 50vw; justify-content: center;">
+            <div class="card-body">
+              <h5 class="card-title">News title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">News Subtitle</h6>
+              <p class="card-text">News text</p>
+              <b class="card-link">Links</b>
+            </div>
+          </div>
         </div>
         <div class="p-2 flex-fill bd-highlight">
-          
+          <h2>Data Analysis</h2>
+          <div class="card" style="width: 25vw; justify-content: center;">
+            <div class="card-body">
+              <h5 class="card-title">News title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">News Subtitle</h6>
+              <p class="card-text">News text</p>
+              <b class="card-link">Links</b>
+            </div>
+          </div>
         </div>
       </div>
 
