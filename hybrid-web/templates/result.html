@@ -91,13 +91,13 @@
       <div class='d-flex bd-highlight'>
         <div class="p-2 flex-fill bd-highlight">
           <h2>Tweets</h2>
-          {% for test in top %}
+          {% for tweet in top %}
             <div class="card" style="width: 25vw; justify-content: center;">
               <div class="card-body">
-                <h5 class="card-title">{{test[0]}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{test[2]}} {{test[3]}}</h6>
-                <p class="card-text">{{test[1]}}</p>
-                <b class="card-link">Retweets: {{test[4]}} Favorites: {{test[5]}}</b>
+                <h5 class="card-title">{{tweet[0]}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{tweet[2]}} {{tweet[3]}}</h6>
+                <p class="card-text">{{tweet[1]}}</p>
+                <b class="card-link">Retweets: {{tweet[4]}} Favorites: {{tweet[5]}}</b>
               </div>
             </div>
           {% endfor %}
@@ -105,14 +105,16 @@
 
         <div class="p-2 flex-fill bd-highlight">
           <h2>News</h2>
+          {% for article in news %}
           <div class="card" style="width: 50vw; justify-content: center;">
             <div class="card-body">
-              <h5 class="card-title">News title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">News Subtitle</h6>
-              <p class="card-text">News text</p>
-              <b class="card-link">Links</b>
+              <h5 class="card-title">{{article[0]}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{article[3]}}</h6>
+              <p class="card-text">{{article[1]}}</p>
+              <a href={{article[2]}} class="btn btn-primary">Link</a>
             </div>
           </div>
+          {% endfor %}
         </div>
         <div class="p-2 flex-fill bd-highlight">
           <h2>Data Analysis</h2>
