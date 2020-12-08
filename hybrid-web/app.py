@@ -80,7 +80,10 @@ def result():
                 tweet.append(result.raw_response['response']['docs'][x]['created_at'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
+                lin = 'https://twitter.com/realdonaldtrump/status/' + result.raw_response['response']['docs'][x]['id'][0]
+                tweet.append(lin)
                 topposts.append(tweet)
+
                 name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
                 if name in posters.keys():
                     posters[name] +=1
@@ -98,7 +101,11 @@ def result():
                 tweet.append(result.raw_response['response']['docs'][x]['created_at'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
+                lin = 'https://twitter.com/' + result.raw_response['response']['docs'][x]['user.screen_name'][0] + '/status/' + result.raw_response['response']['docs'][x]['id']
+                print(lin)
+                tweet.append(lin)  
                 topposts.append(tweet)
+
                 name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
                 if name in posters.keys():
                     posters[name] +=1

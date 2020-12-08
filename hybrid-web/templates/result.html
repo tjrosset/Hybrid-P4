@@ -93,21 +93,21 @@
         <div class="p-2 flex-fill bd-highlight">
           <h2>Tweets</h2>
           {% for tweet in top %}
-            <div class="card" style="width: 25vw; justify-content: center;">
+            <a href={{tweet[6]}} target="_blank" class="card" style="width: 40vw; justify-content: center; text-decoration: none; color: black;">
               <div class="card-body">
-                <h5 class="card-title">{{tweet[0]}}</h5>
+                <h5 class="card-title">@{{tweet[0]}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Location: {{tweet[2]}} Time: {{tweet[3]}}</h6>
                 <p class="card-text">{{tweet[1]}}</p>
-                <b class="card-link">Retweets: {{tweet[4]}} Favorites: {{tweet[5]}}</b>
+                <p class="card-text">Retweets: {{tweet[4]}} Favorites: {{tweet[5]}}</p>
               </div>
-            </div>
+            </a>
           {% endfor %}
         </div>
 
         <div class="p-2 flex-fill bd-highlight">
           <h2>News</h2>
           {% for article in news %}
-          <div class="card" style="width: 50vw; justify-content: center;">
+          <div class="card" style="width: 35vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title">{{article[0]}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{article[3]}}</h6>
@@ -118,7 +118,7 @@
           {% endfor %}
         </div>
         <div class="p-2 flex-fill bd-highlight">
-          <h2>STATS</h2>
+          <h2>Stats</h2>
           <div class="card" style="width: 50vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title" style="text-decoration: underline;">News Publishers</h5>
