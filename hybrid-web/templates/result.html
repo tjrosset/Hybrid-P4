@@ -80,25 +80,35 @@
           </select>
         </div>
         <div class="col-sm-2">
-          <input type="submit" value="submit" class="btn btn-primary" style="margin-top:30px; box-shadow: 1px 5px 3px grey;"/>
+          <label for="exampleFormControlSelect1">Topic</label>
+          <select type="text" class="form-control" name="Tstate">
+            <option selected>Select</option>
+            <option>covid</option>
+            <option>politics</option>
+            <option>vaccine</option>
+          </select>
+        </div>
+        <div class="col-sm-8">
+          <input type="submit" value="submit" class="btn btn-primary" style="margin-top:10px; box-shadow: 1px 5px 3px grey;"/>
         </div>
       </div>
     </form>
     <!-- results -->
     <div>
       <div>
+        <br />
         <p>Number of Results: {{num}}</p>
       </div>
       <div class='d-flex bd-highlight'>
         <div class="p-2 flex-fill bd-highlight">
           <h2>Tweets</h2>
           {% for tweet in top %}
-            <a href={{tweet[6]}} target="_blank" class="card" style="width: 40vw; justify-content: center; text-decoration: none; color: black;">
+            <a href={{tweet[7]}} target="_blank" class="card" style="width: 38vw; justify-content: center; text-decoration: none; color: black;">
               <div class="card-body">
                 <h5 class="card-title">@{{tweet[0]}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Location: {{tweet[2]}} Time: {{tweet[3]}}</h6>
                 <p class="card-text">{{tweet[1]}}</p>
-                <p class="card-text">Retweets: {{tweet[4]}} Favorites: {{tweet[5]}}</p>
+                <p class="card-text">Retweets: {{tweet[4]}} Favorites: {{tweet[5]}} Sentiment: {{tweet[6]}}</p>
               </div>
             </a>
           {% endfor %}
@@ -107,7 +117,7 @@
         <div class="p-2 flex-fill bd-highlight">
           <h2>News</h2>
           {% for article in news %}
-          <div class="card" style="width: 35vw; justify-content: center;">
+          <div class="card" style="width: 30vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title">{{article[0]}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{article[3]}}</h6>
@@ -117,9 +127,10 @@
           </div>
           {% endfor %}
         </div>
+
         <div class="p-2 flex-fill bd-highlight">
           <h2>Stats</h2>
-          <div class="card" style="width: 50vw; justify-content: center;">
+          <div class="card" style="width: 30vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title" style="text-decoration: underline;">News Publishers</h5>
               {% for test in publishd %}
@@ -127,11 +138,19 @@
               {% endfor %}
             </div>
           </div>
-          <div class="card" style="width: 50vw; justify-content: center;">
+          <div class="card" style="width: 30vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title" style="text-decoration: underline;">POIs</h5>
               {% for u in posters %}
                 <h5 class="card-subtitle mb-2 text-muted">{{u}}: {{posters[u]}}</h5>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="card" style="width: 30vw; justify-content: center;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-decoration: underline;">Sentiments for Top Tweets</h5>
+              {% for u in sentiment %}
+                <h5 class="card-subtitle mb-2 text-muted">{{u}}: {{sentiment[u]}}</h5>
               {% endfor %}
             </div>
           </div>

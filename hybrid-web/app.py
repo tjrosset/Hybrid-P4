@@ -3,6 +3,7 @@ from urllib.request import urlopen
 from GoogleNews import GoogleNews
 import pysolr
 
+
 app = Flask(__name__)
 
 @app.route('/', methods=["POST","GET"])
@@ -31,6 +32,7 @@ def result():
         placeholder =''
         testname = ''
         posters= {}
+        sentiment = {}
     #SEARCH
         if(request.args['a'] ==""):
             srch = 'tweet_text: *'
@@ -80,9 +82,17 @@ def result():
                 tweet.append(result.raw_response['response']['docs'][x]['created_at'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
+                tweet.append(result.raw_response['response']['docs'][x]['sentiment'][0])
                 lin = 'https://twitter.com/realdonaldtrump/status/' + result.raw_response['response']['docs'][x]['id'][0]
                 tweet.append(lin)
                 topposts.append(tweet)
+
+                senti = result.raw_response['response']['docs'][x]['sentiment'][0]
+                if senti in sentiment.keys():
+                    sentiment[senti] +=1
+                else:
+                    sentiment[senti]=1
+                               
 
                 name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
                 if name in posters.keys():
@@ -101,10 +111,18 @@ def result():
                 tweet.append(result.raw_response['response']['docs'][x]['created_at'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
+                tweet.append(result.raw_response['response']['docs'][x]['sentiment'][0])
                 lin = 'https://twitter.com/' + result.raw_response['response']['docs'][x]['user.screen_name'][0] + '/status/' + result.raw_response['response']['docs'][x]['id']
-                print(lin)
+                #print(lin)
                 tweet.append(lin)  
                 topposts.append(tweet)
+
+                senti = result.raw_response['response']['docs'][x]['sentiment'][0]
+                if senti in sentiment.keys():
+                    sentiment[senti] +=1
+                else:
+                    sentiment[senti]=1
+                                    
 
                 name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
                 if name in posters.keys():
@@ -150,11 +168,14 @@ def result():
                 topnews.append(news)
                 y+=1
         print(posters)
-        return render_template("result.html", num=num , top = topposts, quey = placeholder, news = topnews , publishd=newsnames, posters = posters)
+        return render_template("result.html", num=num , top = topposts, quey = placeholder, news = topnews , publishd=newsnames, posters = posters, sentiment = sentiment)
 
 @app.route('/insights')
 def insights():
     return render_template("insights.html")
 
+
+if __name__ == '__main__':
+    app.run()
 
 
