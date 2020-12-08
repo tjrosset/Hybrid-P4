@@ -30,6 +30,7 @@ def result():
         topposts = []
         placeholder =''
         testname = ''
+        posters= {}
     #SEARCH
         if(request.args['a'] ==""):
             srch = 'tweet_text: *'
@@ -73,53 +74,76 @@ def result():
             while x<num:
                 tweet=[]
                 tweet.append(result.raw_response['response']['docs'][x]['user.screen_name'][0])
-                testname = result.raw_response['response']['docs'][x]['user.name'][0]
+                testname = result.raw_response['response']['docs'][0]['user.name'][0]
                 tweet.append(result.raw_response['response']['docs'][x]['full_text'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['country'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['created_at'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
                 topposts.append(tweet)
+                name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
+                if name in posters.keys():
+                    posters[name] +=1
+                else:
+                    posters[name]=1
+               
                 x+=1
         else:
             while x!=15:
                 tweet=[]
                 tweet.append(result.raw_response['response']['docs'][x]['user.screen_name'][0])
-                testname = result.raw_response['response']['docs'][x]['user.name'][0]
+                testname = result.raw_response['response']['docs'][0]['user.name'][0]
                 tweet.append(result.raw_response['response']['docs'][x]['full_text'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['country'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['created_at'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
                 topposts.append(tweet)
+                name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
+                if name in posters.keys():
+                    posters[name] +=1
+                else:
+                    posters[name]=1
+           
                 x+=1
 
     #-------------google search------------
         topnews = []
-        gquery = "news " + placeholder + " " + testname
-        googlenews = GoogleNews()
-        googlenews.get_news(gquery)
+        newsnames = {}
+        gquery = "covid " + placeholder + " " + testname
+        googlenews = GoogleNews(start='08-18-2020',end='09-27-2020')
+        googlenews.search(gquery)
         results = googlenews.results()
         print("------Google Query------")
         print(gquery)
         #print(results[0])
         if len(results) == 0:
             print("No search results")
+            temp=[["There are no news results for this query"]]
+            topnews.append(temp)
         else:
             y=0
-            while y!=5:
+            while y!=len(results):
                 news = []
+                count = len(newsnames)
+                x = 0
                 news.append(results[y]['title'])
                 news.append(results[y]['desc'])
-                link = "https://" + results[y]['desc']
+                link = "https://" + results[y]['link']
                 news.append(link)
-                news.append(results[y]['site'])
-                #print(results[y]['title'])
+                news.append(results[y]['media'])
+                publisher = results[y]['media']
+                if publisher=="":
+                    publisher = "Other"
+                if publisher in newsnames.keys():
+                    newsnames[publisher] +=1
+                else:
+                    newsnames[publisher]=1
+                #print(results[y]['date'])
                 topnews.append(news)
                 y+=1
-
-
-        return render_template("result.html", num=num , top = topposts, quey = placeholder, news = topnews)
+        print(posters)
+        return render_template("result.html", num=num , top = topposts, quey = placeholder, news = topnews , publishd=newsnames, posters = posters)
 
 @app.route('/insights')
 def insights():
