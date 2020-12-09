@@ -14,7 +14,7 @@ def home():
         c = "Select"
         d = "Select"
         e = "Select"
-        return redirect(url_for("result", a=a, b=b, c=c, d=d))
+        return redirect(url_for("result", a=a, b=b, c=c, d=d,e=e))
     else:
         return render_template("home.html")
 
@@ -25,7 +25,8 @@ def result():
         b = request.form["POIstate"]
         c = request.form["LANGstate"]
         d = request.form["Lstate"]
-        return redirect(url_for("result", a=a, b=b, c=c, d=d))
+        e = request.form["Tstate"]
+        return redirect(url_for("result", a=a, b=b, c=c, d=d, e=e))
     else:
         filters = []
         topposts = []
@@ -42,7 +43,6 @@ def result():
         else:
             srch = "tweet_text: " + request.args['a']
             placeholder = request.args['a']
-
     #POINAME
         if(request.args['b'] =="Select"):
             poilimit = "-poi_name: null"
@@ -66,6 +66,13 @@ def result():
         else:
             country = "country: " + request.args['d']
         filters.append(country)
+    #Topic
+        if(request.args['e'] =="Select"):
+            topi = ""
+        else:
+            topi = "tweet_text: " + request.args['e']
+        filters.append(topi)
+        
         print("------Solr Query------")
         print(srch)
         print(filters)
@@ -116,9 +123,7 @@ def result():
                     influence[name]=score 
                 else:
                     influence[name]=score              
-           
-                
-               
+
                 x+=1
         else:
             while x!=15:
@@ -172,12 +177,12 @@ def result():
         topnews = []
         newsnames = {}
         gquery = "covid " + placeholder + " " + testname
-        googlenews = GoogleNews(start='08-18-2020',end='09-27-2020')
+        googlenews = GoogleNews(start='08-00-2020',end='09-30-2020')
         googlenews.search(gquery)
         results = googlenews.results()
         print("------Google Query------")
         print(gquery)
-        #print(results[0])
+        #print(results)
         if len(results) == 0:
             print("No search results")
             temp=[["There are no news results for this query"]]
