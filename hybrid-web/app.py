@@ -34,6 +34,7 @@ def result():
         posters= {}
         sentiment = {}
         ratings = {}
+        influence = {}
     #SEARCH
         if(request.args['a'] ==""):
             srch = 'tweet_text: *'
@@ -110,6 +111,12 @@ def result():
                     ratings[name] +=val
                 else:
                     ratings[name]=val
+                score = result.raw_response['response']['docs'][x]['influencer_score'][0]
+                if name in influence.keys():
+                    influence[name]=score 
+                else:
+                    influence[name]=score              
+           
                 
                
                 x+=1
@@ -131,18 +138,18 @@ def result():
                 tweet.append(lin)  
                 topposts.append(tweet)
 
-                senti = result.raw_response['response']['docs'][x]['sentiment'][0]
-                if senti in sentiment.keys():
-                    sentiment[senti] +=1
-                else:
-                    sentiment[senti]=1
-                                    
-
                 name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
                 if name in posters.keys():
                     posters[name] +=1
                 else:
                     posters[name]=1
+
+
+                senti = result.raw_response['response']['docs'][x]['sentiment'][0]
+                if senti in sentiment.keys():
+                    sentiment[senti] +=1
+                else:
+                    sentiment[senti]=1
 
                 if senti == 'positive':
                     val = 1
@@ -152,6 +159,12 @@ def result():
                     ratings[name] +=val
                 else:
                     ratings[name]=val
+
+                score = result.raw_response['response']['docs'][x]['influencer_score'][0]
+                if name in influence.keys():
+                    influence[name]=score 
+                else:
+                    influence[name]=score              
            
                 x+=1
 
@@ -193,8 +206,8 @@ def result():
 
         keys = list(ratings.keys())
         vals = list(ratings.values())
-
-        return render_template("result.html", num=num , top = topposts, quey = placeholder,news=topnews, publishd=newsnames, posters = posters, sentiment = sentiment, keys=keys,vals=vals)
+        print(influence)
+        return render_template("result.html", num=num , top = topposts, quey = placeholder,news=topnews, publishd=newsnames, posters = posters, sentiment = sentiment, keys=keys,vals=vals, influence = influence)
 
 @app.route('/insights')
 def insights():

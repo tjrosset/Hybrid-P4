@@ -8,10 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-      var test = {{publishd|safe}}
-      console.log(test)
-    </script>
+
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -38,59 +35,86 @@
       }
     </script>
 
-  <script type="text/javascript">
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(drawChart);
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-      var news = {{publishd|safe}};
+      function drawChart() {
+        var news = {{publishd|safe}};
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Publishers');
-      data.addColumn('number', 'Number or articles');
-      for(var index in news){
-        data.addRow([index,news[index]]);
-        console.log(index)
-      };
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Publishers');
+        data.addColumn('number', 'Number or articles');
+        for(var index in news){
+          data.addRow([index,news[index]]);
+          
+        };
 
-      var options = {
-        chart: {
-        },
-        bars: 'vertical' // Required for Material Bar Charts.
-      };
+        var options = {
+          chart: {
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
 
-      var chart = new google.charts.Bar(document.getElementById('neww'));
+        var chart = new google.charts.Bar(document.getElementById('neww'));
 
-      chart.draw(data, google.charts.Bar.convertOptions(options));
-    }
-  </script>
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 
-  <script type="text/javascript">
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(drawChart);
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-      var news = {{posters|safe}};
+      function drawChart() {
+        var news = {{posters|safe}};
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'POIs');
-      data.addColumn('number', 'Number Tweets');
-      for(var index in news){
-        data.addRow([index,news[index]]);
-        console.log(index)
-      };
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'POIs');
+        data.addColumn('number', 'Number Tweets');
+        for(var index in news){
+          data.addRow([index,news[index]]);
+          
+        };
 
-      var options = {
-        chart: {
-        },
-        bars: 'vertical' // Required for Material Bar Charts.
-      };
+        var options = {
+          chart: {
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
 
-      var chart = new google.charts.Bar(document.getElementById('postss'));
+        var chart = new google.charts.Bar(document.getElementById('postss'));
 
-      chart.draw(data, google.charts.Bar.convertOptions(options));
-    }
-  </script>
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var can = {{influence|safe}};
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'POIs');
+        data.addColumn('number', 'Influencer Score');
+        for(var index in can){
+          data.addRow([index,can[index]]);
+          
+        };
+
+        var options = {
+          chart: {
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('inf'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 
     <title>Search Results</title>
   </head>
@@ -237,6 +261,12 @@
             <div class="card-body">
               <h5 class="card-title" style="text-decoration: underline;">Distribution of Tweets</h5>
               <div id="postss" style="width: 100%; justify-content: center;"></div>
+            </div>
+          </div>
+          <div class="card" style="width: 29vw; justify-content: center;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-decoration: underline;">POI Influencer Scores</h5>
+              <div id="inf" style="width: 100%; justify-content: center;"></div>
             </div>
           </div>
 
