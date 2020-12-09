@@ -8,6 +8,89 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      var test = {{publishd|safe}}
+      console.log(test)
+    </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var keys = {{keys|safe}};
+        var vals = {{vals|safe}};
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'POIs');
+        data.addColumn('number', 'Rating');
+        for(var index in keys){
+          data.addRow([keys[index],vals[index]]);
+        };
+
+        var options = {
+          chart: {
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barcomp'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var news = {{publishd|safe}};
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Publishers');
+      data.addColumn('number', 'Number or articles');
+      for(var index in news){
+        data.addRow([index,news[index]]);
+        console.log(index)
+      };
+
+      var options = {
+        chart: {
+        },
+        bars: 'vertical' // Required for Material Bar Charts.
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('neww'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  </script>
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var news = {{posters|safe}};
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'POIs');
+      data.addColumn('number', 'Number Tweets');
+      for(var index in news){
+        data.addRow([index,news[index]]);
+        console.log(index)
+      };
+
+      var options = {
+        chart: {
+        },
+        bars: 'vertical' // Required for Material Bar Charts.
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('postss'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  </script>
 
     <title>Search Results</title>
   </head>
@@ -102,8 +185,16 @@
       <div class='d-flex bd-highlight'>
         <div class="p-2 flex-fill bd-highlight">
           <h2>Tweets</h2>
+          {% if num == 0 %}
+          <div class="card" style="width: 37vw; justify-content: center;">
+            <div class="card-body">
+              <h5 class="card-title">No Tweet Results Found</h5>
+              <h5 class="card-title">Please conduct another search</h5>
+            </div>
+          </div>
+          {% endif %}
           {% for tweet in top %}
-            <a href={{tweet[7]}} target="_blank" class="card" style="width: 38vw; justify-content: center; text-decoration: none; color: black;">
+            <a href={{tweet[7]}} target="_blank" class="card" style="width: 37vw; justify-content: center; text-decoration: none; color: black;">
               <div class="card-body">
                 <h5 class="card-title">@{{tweet[0]}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Location: {{tweet[2]}} Time: {{tweet[3]}}</h6>
@@ -117,7 +208,7 @@
         <div class="p-2 flex-fill bd-highlight">
           <h2>News</h2>
           {% for article in news %}
-          <div class="card" style="width: 30vw; justify-content: center;">
+          <div class="card" style="width: 31vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title">{{article[0]}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{article[3]}}</h6>
@@ -130,30 +221,25 @@
 
         <div class="p-2 flex-fill bd-highlight">
           <h2>Stats</h2>
-          <div class="card" style="width: 30vw; justify-content: center;">
+          <div class="card" style="width: 29vw; justify-content: center;">
+            <div class="card-body">
+              <h5 class="card-title" style="text-decoration: underline;">POIs Sentiments</h5>
+              <div id="barcomp" style="width: 100%; justify-content: center;"></div>
+            </div>
+          </div>
+          <div class="card" style="width: 29vw; justify-content: center;">
             <div class="card-body">
               <h5 class="card-title" style="text-decoration: underline;">News Publishers</h5>
-              {% for test in publishd %}
-                <h5 class="card-subtitle mb-2 text-muted">{{test}}: {{publishd[test]}}</h5>
-              {% endfor %}
+              <div id="neww" style="width: 100%; justify-content: center;"></div>
             </div>
           </div>
-          <div class="card" style="width: 30vw; justify-content: center;">
+          <div class="card" style="width: 29vw; justify-content: center;">
             <div class="card-body">
-              <h5 class="card-title" style="text-decoration: underline;">POIs</h5>
-              {% for u in posters %}
-                <h5 class="card-subtitle mb-2 text-muted">{{u}}: {{posters[u]}}</h5>
-              {% endfor %}
+              <h5 class="card-title" style="text-decoration: underline;">Distribution of Tweets</h5>
+              <div id="postss" style="width: 100%; justify-content: center;"></div>
             </div>
           </div>
-          <div class="card" style="width: 30vw; justify-content: center;">
-            <div class="card-body">
-              <h5 class="card-title" style="text-decoration: underline;">Sentiments for Top Tweets</h5>
-              {% for u in sentiment %}
-                <h5 class="card-subtitle mb-2 text-muted">{{u}}: {{sentiment[u]}}</h5>
-              {% endfor %}
-            </div>
-          </div>
+
         </div>
 
       </div>
@@ -163,6 +249,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </body>
 </html>

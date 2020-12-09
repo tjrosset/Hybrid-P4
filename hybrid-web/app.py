@@ -33,6 +33,7 @@ def result():
         testname = ''
         posters= {}
         sentiment = {}
+        ratings = {}
     #SEARCH
         if(request.args['a'] ==""):
             srch = 'tweet_text: *'
@@ -75,6 +76,7 @@ def result():
         if num<15:
             while x<num:
                 tweet=[]
+                val = 0
                 tweet.append(result.raw_response['response']['docs'][x]['user.screen_name'][0])
                 testname = result.raw_response['response']['docs'][0]['user.name'][0]
                 tweet.append(result.raw_response['response']['docs'][x]['full_text'][0])
@@ -83,6 +85,7 @@ def result():
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['sentiment'][0])
+                tweet.append(result.raw_response['response']['docs'][x]['influencer_score'][0])
                 lin = 'https://twitter.com/realdonaldtrump/status/' + result.raw_response['response']['docs'][x]['id'][0]
                 tweet.append(lin)
                 topposts.append(tweet)
@@ -92,18 +95,28 @@ def result():
                     sentiment[senti] +=1
                 else:
                     sentiment[senti]=1
-                               
 
                 name = result.raw_response['response']['docs'][x]['user.screen_name'][0]
                 if name in posters.keys():
                     posters[name] +=1
                 else:
                     posters[name]=1
+
+                if senti == 'positive':
+                    val = 1
+                if senti == 'Negative':
+                    val = -1
+                if name in ratings.keys():
+                    ratings[name] +=val
+                else:
+                    ratings[name]=val
+                
                
                 x+=1
         else:
             while x!=15:
                 tweet=[]
+                val = 0
                 tweet.append(result.raw_response['response']['docs'][x]['user.screen_name'][0])
                 testname = result.raw_response['response']['docs'][0]['user.name'][0]
                 tweet.append(result.raw_response['response']['docs'][x]['full_text'][0])
@@ -112,6 +125,7 @@ def result():
                 tweet.append(result.raw_response['response']['docs'][x]['retweet_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['favorite_count'][0])
                 tweet.append(result.raw_response['response']['docs'][x]['sentiment'][0])
+                tweet.append(result.raw_response['response']['docs'][x]['influencer_score'][0])
                 lin = 'https://twitter.com/' + result.raw_response['response']['docs'][x]['user.screen_name'][0] + '/status/' + result.raw_response['response']['docs'][x]['id']
                 #print(lin)
                 tweet.append(lin)  
@@ -129,6 +143,15 @@ def result():
                     posters[name] +=1
                 else:
                     posters[name]=1
+
+                if senti == 'positive':
+                    val = 1
+                if senti == 'Negative':
+                    val = -1
+                if name in ratings.keys():
+                    ratings[name] +=val
+                else:
+                    ratings[name]=val
            
                 x+=1
 
@@ -167,8 +190,11 @@ def result():
                 #print(results[y]['date'])
                 topnews.append(news)
                 y+=1
-        print(posters)
-        return render_template("result.html", num=num , top = topposts, quey = placeholder, news = topnews , publishd=newsnames, posters = posters, sentiment = sentiment)
+
+        keys = list(ratings.keys())
+        vals = list(ratings.values())
+
+        return render_template("result.html", num=num , top = topposts, quey = placeholder,news=topnews, publishd=newsnames, posters = posters, sentiment = sentiment, keys=keys,vals=vals)
 
 @app.route('/insights')
 def insights():

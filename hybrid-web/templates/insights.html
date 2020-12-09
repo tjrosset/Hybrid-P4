@@ -148,34 +148,34 @@
       }
     </script>
 
-<script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Reception', 'Number of Tweets', { role: "style" } ],
-        ['Positive', 10881,'stroke-color: #000000; stroke-width: 2; fill-color: #66CD00'],
-        ['Neutral', 3434,'stroke-color: #000000; stroke-width: 2; fill-color: #9B9A99'],
-        ['Negative', 3115,'stroke-color: #000000; stroke-width: 2; fill-color: #FF5733'],
-      ]);
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Reception', 'Number of Tweets', { role: "style" } ],
+          ['Positive', 10881,'stroke-color: #000000; stroke-width: 2; fill-color: #66CD00'],
+          ['Neutral', 3434,'stroke-color: #000000; stroke-width: 2; fill-color: #9B9A99'],
+          ['Negative', 3115,'stroke-color: #000000; stroke-width: 2; fill-color: #FF5733'],
+        ]);
 
-  var view = new google.visualization.DataView(data);
-  view.setColumns([0, 1,
-                   { calc: "stringify",
-                     sourceColumn: 1,
-                     type: "string",
-                     role: "annotation" },
-                   2]);
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                    { calc: "stringify",
+                      sourceColumn: 1,
+                      type: "string",
+                      role: "annotation" },
+                    2]);
 
-  var options = {
-    title: 'Reception',
-    bar: {groupWidth: "95%"},
-    legend: { position: "none" },
-  };
-  var chart = new google.visualization.ColumnChart(document.getElementById("avgrec"));
-  chart.draw(view, options);
-  }
-</script>
+    var options = {
+      title: 'Reception',
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("avgrec"));
+    chart.draw(view, options);
+    }
+  </script>
 
     <title>Insights</title>
   </head>
