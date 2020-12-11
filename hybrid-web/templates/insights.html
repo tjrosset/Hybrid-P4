@@ -128,16 +128,16 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Month', 'USA', 'ITALY', 'INDIA'],
-          ['JULY 1st',  1477870,      15122,      605220],
-          ['JULY 31st',  2269422,      12268,      1697054],
-          ['AUGUST 1st',  2293217,      12303,      1751919],
-          ['AUGUST 31st',  2626877,      26081,      3687939],
-          ['SEPTEMBER 1st',  2627568,       26766,     3766108],
-          ['SEPTEMBER 30th',  2574775,       51263,     6310267]
+          ['JULY 1st',  1477869,      15122,      227476],
+          ['JULY 31st',  2269422,      12268,      564856],
+          ['AUGUST 1st',  2293217,      12303,      567637],
+          ['AUGUST 31st',  2626877,      26081,      785127],
+          ['SEPTEMBER 1st',  2627568,       26766,     800127],
+          ['SEPTEMBER 30th',  2574775,       51263,     941552]
         ]);
 
         var options = {
-          title: 'Covid Curves',
+          title: 'Active Covid Cases Overtime',
           curveType: 'function',
           legend: { position: 'bottom' }
         };

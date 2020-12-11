@@ -168,7 +168,7 @@
             <option>ministerosalute</option>
           </select>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
           <label for="exampleFormControlSelect1">Language</label>
           <select type="text" class="form-control" name="LANGstate">
             <option selected>Select</option>
@@ -177,7 +177,7 @@
             <option>hi</option>
           </select>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
           <label for="exampleFormControlSelect1">Location</label>
           <select type="text" class="form-control" name="Lstate">
             <option selected>Select</option>
@@ -186,7 +186,7 @@
             <option>India</option>
           </select>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
           <label for="exampleFormControlSelect1">Topic</label>
           <select type="text" class="form-control" name="Tstate">
             <option selected>Select</option>
@@ -202,6 +202,10 @@
             <option>Vaccine</option>
           </select>
         </div>
+        <div class="col-sm-2" style="margin-top:35px; margin-left: 20px;">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" name='ifscore'>
+          <label class="form-check-label" for="exampleCheck1">Sort by influencer score</label>
+        </div>
         <div class="col-sm-8">
           <input type="submit" value="submit" class="btn btn-primary" style="margin-top:10px; box-shadow: 1px 5px 3px grey;"/>
         </div>
@@ -209,10 +213,7 @@
     </form>
     <!-- results -->
     <div>
-      <div>
-        <br />
-        <p>Number of Results: {{num}}</p>
-      </div>
+
       <div class='d-flex bd-highlight'>
         <div class="p-2 flex-fill bd-highlight">
           <h2>Tweets</h2>
@@ -225,7 +226,7 @@
           </div>
           {% endif %}
           {% for tweet in top %}
-            <a href={{tweet[7]}} target="_blank" class="card" style="width: 37vw; justify-content: center; text-decoration: none; color: black;">
+            <a href={{tweet[8]}} target="_blank" class="card" style="width: 37vw; justify-content: center; text-decoration: none; color: black;">
               <div class="card-body">
                 <h5 class="card-title">@{{tweet[0]}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Location: {{tweet[2]}} Time: {{tweet[3]}}</h6>

@@ -14,7 +14,8 @@ def home():
         c = "Select"
         d = "Select"
         e = "Select"
-        return redirect(url_for("result", a=a, b=b, c=c, d=d,e=e))
+        f = ''
+        return redirect(url_for("result", a=a, b=b, c=c, d=d,e=e, f=f))
     else:
         return render_template("home.html")
 
@@ -26,7 +27,12 @@ def result():
         c = request.form["LANGstate"]
         d = request.form["Lstate"]
         e = request.form["Tstate"]
-        return redirect(url_for("result", a=a, b=b, c=c, d=d, e=e))
+        f= request.form.getlist("ifscore")
+        if len(f) == 0:
+            check = ''
+        else:
+            check = 'on'
+        return redirect(url_for("result", a=a, b=b, c=c, d=d, e=e,f=check))
     else:
         filters = []
         topposts = []
@@ -36,6 +42,11 @@ def result():
         sentiment = {}
         ratings = {}
         influence = {}
+        checkbox = ''
+    #INFLUENCE_CHECKBOX
+        if(request.args['f'] != ''):
+            checkbox = "influencer_score desc"
+
     #SEARCH
         if(request.args['a'] ==""):
             srch = 'tweet_text: *'
@@ -76,9 +87,10 @@ def result():
         print("------Solr Query------")
         print(srch)
         print(filters)
+        print(checkbox)
     #-------------pysolr search------------
         solr = pysolr.Solr('http://18.234.178.228:8983/solr/IRF20P4/')
-        result = solr.search(srch, fq=filters, rows=20)
+        result = solr.search(srch, fq=filters, rows=20,sort=checkbox)
         num = result.raw_response['response']['numFound']
         x=0
         if num<15:
@@ -195,7 +207,7 @@ def result():
                 x = 0
                 news.append(results[y]['title'])
                 news.append(results[y]['desc'])
-                link = "https://" + results[y]['link']
+                link = results[y]['link']
                 news.append(link)
                 news.append(results[y]['media'])
                 publisher = results[y]['media']
@@ -211,7 +223,7 @@ def result():
 
         keys = list(ratings.keys())
         vals = list(ratings.values())
-        print(influence)
+        #print(influence)
         return render_template("result.html", num=num , top = topposts, quey = placeholder,news=topnews, publishd=newsnames, posters = posters, sentiment = sentiment, keys=keys,vals=vals, influence = influence)
 
 @app.route('/insights')
