@@ -15,7 +15,7 @@ def home():
         d = "Select"
         e = "Select"
         f = ''
-        return redirect(url_for("result", a=a, b=b, c=c, d=d,e=e, f=f))
+        return redirect(url_for('result', a=a, b=b, c=c, d=d,e=e, f=f))
     else:
         return render_template("home.html")
 
@@ -32,7 +32,7 @@ def result():
             check = ''
         else:
             check = 'on'
-        return redirect(url_for("result", a=a, b=b, c=c, d=d, e=e,f=check))
+        return redirect(url_for('result', a=a, b=b, c=c, d=d, e=e,f=check))
     else:
         filters = []
         topposts = []

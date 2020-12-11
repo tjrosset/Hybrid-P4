@@ -29,6 +29,13 @@
 
 
 
+    <div style="position:absolute; margin-left:40% ;top:15%;">
+      <div style="position:absolute;">
+        <img src="https://i.imgur.com/VpmuePT.jpg">
+      </div>
+
+
+
             <div>
           <label for="LangState">Language</label>
           <select id="LangState" class="form-control">
